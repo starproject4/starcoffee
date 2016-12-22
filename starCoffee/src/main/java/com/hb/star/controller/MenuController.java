@@ -78,16 +78,21 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String menuInsert(MenuVo bean, @RequestParam("file") MultipartFile file) {
+	public String menuInsert(MenuVo bean, @RequestParam("file") MultipartFile file, HttpServletRequest req) {
 		MenuDao mapper = sqlSession.getMapper(MenuDao.class);
+		String rootPath = req.getRealPath("/");
+		String attachPath = "resources/imgs/upload/";
+		System.out.println("리얼패스:"+req.getRealPath("/"));
+		System.out.println("리얼패스:"+file.getOriginalFilename());
 		String orgfnm=file.getOriginalFilename();
 		String newfnm;
-		File f = new File("C:\\spring\\file\\"+orgfnm);
+		File f = new File(rootPath+attachPath+orgfnm);
+		System.out.println();
 		System.out.println("f.exists():"+f.exists());
 		if(f.exists()){
 			System.out.println("f.exists():있다");
 			newfnm=System.currentTimeMillis()+"_"+orgfnm;
-			f = new File("C:\\spring\\file\\"+newfnm);
+			f = new File(rootPath+attachPath+newfnm);
 		}else{
 			System.out.println("f.exists():없다");
 			newfnm=orgfnm;			
@@ -117,6 +122,7 @@ public class MenuController {
 	}
 	
 	public String menuUpdate(){
+		
 		return "";
 	}
 	

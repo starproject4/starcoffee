@@ -8,19 +8,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<!-- 부트스트랩 -->
+<link href="/star/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/star/resources/css/star.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
-	<div class="s_title">${title }</div>
+	<div class="s_title"><h4><strong>${title }</strong></h4></div>
 	<c:forEach items="${alist}" var="bean">
-		<div class="con">
+		<div class="col-sm-12 col-xs-12 s_menu con">
 			<div>
 				<input type="checkbox" name="delchk" value="${bean.no }">
 			</div>
-			<a href="/star/menu/detail?no=${bean.no }">
-				<div><img src="C:/spring/file/${bean.newfilename }"></div>
-				<div>${bean.title }</div>
-			</a>
+			<div><a href="/star/menu/detail?no=${bean.no }">
+				<img src="/star/resources/imgs/upload/${bean.newfilename }">
+			</a></div>
+				<div class="text-center">${bean.title }</div>
 		</div>
 	</c:forEach>
 </body>
